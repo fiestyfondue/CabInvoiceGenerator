@@ -9,12 +9,9 @@ namespace CabInvoiceGenerator
         //variable
         float priceperkm = 0;
         float pricepermin = 0;
-        /// <summary>
-        /// generate invoice for user's ride
-        /// </summary>
-        /// <param name="rideType">type of ride</param>
-        /// <param name="distance">distance travelled</param>
-        /// <param name="time">time take to travel the distance</param>
+        
+        // generate invoice for user's ride
+       
         public double InvoiceGenerator(RideType.Ride rideType, Ride ride)
         {
             //ride is premium will have permium prices
@@ -35,8 +32,8 @@ namespace CabInvoiceGenerator
                 }
                 //calculate fare price
                 double fare = FareCalculator(priceperkm, pricepermin, ride.Distance, ride.Time);
-                Console.WriteLine($"Cab's Invoice \n----------------\n Ride Type:  {rideType} \ndistance:   {ride.Distance} km(s), " +
-                    $" \ntime:      {ride.Time} mins \n------------------\nTotal fare:  {fare} .Rs");
+                Console.WriteLine($"Cab's Invoice \n-- \n Ride Type:  {rideType} \ndistance:   {ride.Distance} km(s), " +
+                    $" \ntime:      {ride.Time} mins \n--\nTotal fare:  {fare} .Rs");
                 return fare;
             }
             catch (Exception)
@@ -44,14 +41,14 @@ namespace CabInvoiceGenerator
                 throw new InvoiceCustomException(InvoiceCustomException.ErrorType.NO_SUCH_TYPE, "No such ridetype exists!!");
             }
         }
-        /// <summary>
+                     
         /// fare calculator for cab invoice
-        /// </summary>
+       
         /// <param name="priceperkm"></param>
         /// <param name="pricepermin"></param>
         /// <param name="distance"></param>
         /// <param name="time"></param>
-        /// <returns></returns>
+        
         private double FareCalculator(float priceperkm, float pricepermin, double distance, double time)
         {
             double fare;
@@ -69,6 +66,19 @@ namespace CabInvoiceGenerator
             {
                 throw new InvoiceCustomException(InvoiceCustomException.ErrorType.PARAMETERS_DOESNT_MEET_REQUIREMENTS, "Distance or time cannot be 0");
             }
+        }
+        /// perform invoice calculation for multiple rides and return aggregate total for rides
+        //Summary
+        /// <param name="ride">array of rides</param>
+        /// <returns>total aggregate of rides</returns>
+        public double InvoiceGenerator(Ride[] ride)
+        {
+            double totalFare = 0;
+            for (int i = 0; i < ride.Length; i++)
+            {
+                totalFare += InvoiceGenerator(RideType.Ride.NORMAL, ride[i]);
+            }
+            return totalFare;
         }
     }
 }

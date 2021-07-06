@@ -8,6 +8,11 @@ namespace CabInvoiceGenerator
     {
         public double Distance { get; set; }
         public double Time { get; set; }
+        //public Ride()
+        //{
+        //    Distance = 0;
+        //    Time = 0;
+        //}
         public Ride(double distance, double time)
         {
             Distance = distance;
