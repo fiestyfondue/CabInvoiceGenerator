@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CabInvoiceGeneratorProgram\TaxiInvoiceGenerator.csproj" />
     <ProjectReference Include="..\TaxiInvoiceGenerator\TaxiInvoiceGenerator.csproj" />
   </ItemGroup>
 

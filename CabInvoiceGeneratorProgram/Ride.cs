@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TaxiInvoiceGenerator
 {
-    class Ride
+    public class Ride
     {
         public double distance;
         public int time;

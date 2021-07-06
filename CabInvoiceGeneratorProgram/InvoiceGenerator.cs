@@ -64,5 +64,26 @@ namespace TaxiInvoiceGenerator
             }
             return Math.Max(totalFare, MINIMUM_FARE);
         }
+        //Function to calculate Total fare and generating Summary for multiple rides
+        public InvoiceSummary CalculateFare(Ride[] rides)
+        {
+            double totalFare = 0;
+            try
+            {
+                //Calculating total fare for all rides
+                foreach(Ride ride in rides)
+                {
+                    totalFare += this.CalculateFare(ride.distance, ride.time);
+                }
+            }
+            catch(CabinvoiceException)
+            {
+                if(rides==null)
+                {
+                    throw new CabinvoiceException(CabinvoiceException.ExceptionType.NULL_RIDES, "Rides are null");
+                }
+            }
+            return new InvoiceSummary(rides.Length, totalFare);
+        }
     }
 }
