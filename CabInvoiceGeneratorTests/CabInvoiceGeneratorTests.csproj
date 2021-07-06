@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CabInvoiceGenerator\CabInvoiceGenerator.csproj" />
-    <ProjectReference Include="..\CabInvoice\CabInvoiceGenerator.csproj" />
+    <ProjectReference Include="..\TaxiInvoiceGenerator\TaxiInvoiceGenerator.csproj" />
   </ItemGroup>
 
 </Project>
